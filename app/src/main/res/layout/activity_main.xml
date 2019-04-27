@@ -7,26 +7,36 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
 
-    <FrameLayout
-        android:layout_width="100dp"
-        android:layout_height="100dp">
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp">
 
-        <ImageView
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="이름"
+                android:textColor="#000"/>
+        </FrameLayout>
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher"/>
-
-        <TextView
-            android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="이름"
-            android:textColor="#000"/>
-
-
-    </FrameLayout>
+            android:layout_height="80dp"
+            android:spinnerMode="dialog"
+            android:entries="@array/live_location"></Spinner>
+    </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
