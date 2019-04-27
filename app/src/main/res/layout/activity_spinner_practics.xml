@@ -15,7 +15,14 @@
             android:text="주문 할 피자 가게 선택"/>
 
         <Spinner
+            android:id="@+id/pizzaStoreSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></Spinner>
+
+        <Button
+            android:id="@+id/confirmBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="선택 결과 확인"/>
     </LinearLayout>
 </layout>

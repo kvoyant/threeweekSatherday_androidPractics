@@ -3,14 +3,20 @@ package com.tjeit.threeweeksatherday_androidpractics;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
+import com.tjeit.threeweeksatherday_androidpractics.adapters.PizzaStoreAdapter;
 import com.tjeit.threeweeksatherday_androidpractics.databinding.ActivitySpinnerPracticsBinding;
 import com.tjeit.threeweeksatherday_androidpractics.datas.PizzaStore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpinnerPracticsActivity extends AppCompatActivity  {
+public class SpinnerPracticsActivity extends AppCompatActivity {
+
+    PizzaStoreAdapter pizzaStoreAdapter;
 
     ActivitySpinnerPracticsBinding act;
 
@@ -23,6 +29,40 @@ public class SpinnerPracticsActivity extends AppCompatActivity  {
 
         fillPizzaStores();
 
+
+        pizzaStoreAdapter = new PizzaStoreAdapter(SpinnerPracticsActivity.this, pizzaStores);
+        act.pizzaStoreSpinner.setAdapter(pizzaStoreAdapter);
+
+
+        act.pizzaStoreSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(SpinnerPracticsActivity.this, String.format("%s 선택", pizzaStores.get(position).storeName), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        act.confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                [스피너에 어떤 값이 선택되어있는지]? 토스트로 출력.
+
+//                피자 스피너가 선택된 위치를 받아서 저장.
+                int selectedPosition = act.pizzaStoreSpinner.getSelectedItemPosition();
+
+//                그 가게의 이름?
+                String selectedPizzaStoreName = pizzaStores.get(selectedPosition).storeName;
+
+                Toast.makeText(SpinnerPracticsActivity.this, String.format("현재 선택된 가게이름 : %s", selectedPizzaStoreName), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 
@@ -32,6 +72,5 @@ public class SpinnerPracticsActivity extends AppCompatActivity  {
         pizzaStores.add(new PizzaStore("피자헛", "강동구", "11:00 ~ 23:00", "https://mblogthumb-phinf.pstatic.net/20141124_182/howtomarry_1416806028308979cg_PNG/Pizza_Hut_logo.svg.png?type=w2"));
         pizzaStores.add(new PizzaStore("파파존스", "성북구", "17:00 ~ 익일 03:00", "http://postfiles2.naver.net/20160530_65/ppanppane_1464617766007O9b5u_PNG/%C6%C4%C6%C4%C1%B8%BD%BA_%C7%C7%C0%DA_%B7%CE%B0%ED_%284%29.png?type=w966"));
     }
-
 
 }

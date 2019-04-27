@@ -14,31 +14,54 @@ import com.tjeit.threeweeksatherday_androidpractics.datas.PizzaStore;
 import java.util.List;
 
 public class PizzaStoreAdapter extends ArrayAdapter<PizzaStore> {
+
     Context mContext;
     List<PizzaStore> mList;
     LayoutInflater inf;
 
-
     public PizzaStoreAdapter(Context context, List<PizzaStore> list) {
+
         super(context, R.layout.pizza_spinner_list_item, list);
 
         mContext = context;
         mList = list;
         inf = LayoutInflater.from(mContext);
+
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View row = convertView;
+
+        if (row == null) {
+            row = inf.inflate(R.layout.pizza_spiner_item, null);
+        }
+
+        PizzaStore  storeData = mList.get(position);
+
+        ImageView logoImgView = row.findViewById(R.id.logoImgView);
+        TextView nameTxt = row.findViewById(R.id.nameTxt);
+
+        nameTxt.setText(storeData.storeName);
+
+
+        return row;
+    }
+
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
 
         View row = convertView;
 
-        if(row == null) {
+        if (row == null) {
             row = inf.inflate(R.layout.pizza_spinner_list_item, null);
         }
 
-        PizzaStore storeData = mList.get(position);
+        PizzaStore  storeData = mList.get(position);
 
-        ImageView logoImgView = row.findViewById(R.id.logoImageURL);
+        ImageView logoImgView = row.findViewById(R.id.logoImgView);
         TextView nameTxt = row.findViewById(R.id.nameTxt);
         TextView locationTxt = row.findViewById(R.id.locationTxt);
         TextView openTimeTxt = row.findViewById(R.id.openTimeTxt);
@@ -49,5 +72,6 @@ public class PizzaStoreAdapter extends ArrayAdapter<PizzaStore> {
 
 
         return row;
+
     }
 }
